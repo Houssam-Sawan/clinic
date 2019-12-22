@@ -5,9 +5,9 @@
 ?>
 
 <body>
-<div class="jumbotron">
-<button type="button" class="btn btn-primary">Hello</button>
 
-</div>
+    <div class="jumbotron">
+        <button type="button" class="btn btn-warning">Hello</button>
+    </div>
 </body>
 </html>
