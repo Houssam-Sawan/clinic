@@ -1,3 +1,7 @@
+<?php
+  include 'common.php';
+  include 'base.php';
+?>
 <!doctype html>
 <html lang="en">
   <head>
