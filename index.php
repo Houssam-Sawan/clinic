@@ -12,10 +12,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
-                    <h1 class="text-center login-title main-title">Member Area</h1>
-                    <h1 class="text-center login-title">Thanks for logging in!</h1>
+                    <h2 class="text-center  ">Member Area</h2>
+                    <h2 class="text-center ">Thanks for logging in!</h2>
                     <div class="account-wall">
-    <!--                <h1>Member Area</h1>
+    <!--                <h2>Member Area</h2>
                     <p>Thanks for logging in! You are <code><?=$_SESSION['FullName']?></code>
                     and your email address is <code><?=$_SESSION['EmailAddress']?></code>.</p>
     -->
@@ -68,16 +68,12 @@
                 echo '<div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
-                        <h1 class="text-center login-title main-title">Success</h1>
-                        <h1 class="text-center login-title">We are now redirecting you to the member area.</h1>
-                        <h1 class="text-center login-title">If you auto directing doesnt work please click
-                        <a href="index.php">here</a></h1>
+                        <h2 class="text-center">Success</h2>
+                        <h2 class="text-center">We are now redirecting you to the member area.</h2>
+                        <h2 class="text-center">If you auto directing doesnt work please click
+                        <a href="index.php">here</a></h2>
                 </div></div></div>';
 
-                //echo "<h1>Success</h1>";
-            // echo "<p>We are now redirecting you to the member area.</p>";
-                //echo <meta http-equiv="refresh" content="2;url=http://example.com/" />
-                //echo "<meta http-equiv='refresh' content='=2;url=index.php' />";
             echo '<script language="javascript" type="text/javascript">
                 location.href = "index.php";
                 </script>
@@ -86,9 +82,6 @@
             else
             {
                 error("Sorry, the Username or Password is not correct");
-            /* echo "<h1>Error</h1>";
-                echo "<p>Sorry, your account could not be found. Please
-                    <a href=\"index.php\">click here to try again</a>.</p>";*/
                 mysqli_close($dbc);
             }
 
@@ -105,9 +98,9 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
-            <h1 class="text-center login-title main-title">Member Login</h1>
-            <h1 class="text-center login-title">Thanks for visiting!</h1>
-            <h1 class="text-center login-title">Please login to continue</h1>
+            <h2 class="text-center">Member Login</h2>
+            <h2 class="text-center ">Thanks for visiting!</h2>
+            <h2 class="text-center ">Please login to continue</h2>
                 <div class="account-wall">
                     <form class="form-signin" method="post" action="index.php" name="loginform" id="loginform">
                         <fieldset>
