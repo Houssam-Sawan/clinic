@@ -14,7 +14,7 @@
         ?>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
+                <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
                     <h2 class="text-center  ">Member Area</h2>
                     <h2 class="text-center ">Thanks for logging in!</h2>
                     <div class="account-wall">
@@ -70,7 +70,7 @@
 
                 echo '<div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
+                    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
                         <h2 class="text-center">Success</h2>
                         <h2 class="text-center">We are now redirecting you to the member area.</h2>
                         <h2 class="text-center">If you auto directing doesnt work please click
@@ -100,7 +100,7 @@
         ?>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
+            <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
             <h2 class="text-center">Member Login</h2>
             <h2 class="text-center ">Thanks for visiting!</h2>
             <h2 class="text-center ">Please login to continue</h2>
