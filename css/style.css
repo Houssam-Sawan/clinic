@@ -1,0 +1,176 @@
+body{
+    font-family: "Times New Roman", Times, serif;
+}
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-add-item{
+    align-items : center;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-add-user
+{
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-add-item .form-control2
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-add-user .form-control2
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin-left: 32px ;
+    margin-bottom: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-add-item  #item
+{
+    min-width: 500px;
+}
+.form-add-item  #patch, #qty, #brand
+{
+    max-width: 100px;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 20px 0px 0px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.table-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.main-title
+{
+font-size: 1.5em;
+}
+.submit-title
+{
+    font-size: 1.5em;
+}
+
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+
+.add-btn
+{
+    margin-bottom: 5px;
+    max-height: 40px;
+}
+.btn-cntr
+{
+    margin:0 auto;
+    display:block;
+    min-width: 150px;
+}
+
+
+
+/*
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Trebuchet MS;
+}
+a {
+    color: #000;
+}
+a:hover, a:active, a:visited {
+    text-decoration: none;
+}
+#main {
+    width: 780px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+    border: 1px solid #CCC;
+    background-color: #EEE;
+}
+form fieldset { border: 0; }
+form fieldset p br { clear: left; }
+label {
+    margin-top: 5px;
+    display: block;
+    width: 100px;
+    padding: 0;
+    float: left;
+}
+input {
+    font-family: Trebuchet MS;
+    border: 1px solid #CCC;
+    margin-bottom: 5px;
+    background-color: #FFF;
+    padding: 2px;
+}
+input:hover {
+    border: 1px solid #222;
+    background-color: #EEE;
+}
+
+*/
