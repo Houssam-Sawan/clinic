@@ -22,12 +22,6 @@
                         <a href="addprescription.php">Add Prescription</a>
                     </li>
                     <li>
-                        <a href="groups.php">Groups</a>
-                    </li>
-                    <li>
-                        <a href="addgroup.php">Add Group</a>
-                    </li>
-                    <li>
                         <a href="users.php">Users</a>
                     </li>
                     <li>
