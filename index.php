@@ -8,7 +8,7 @@
 <?php
 
     include 'nav.php';
-    
+
     if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
     {
         ?>
@@ -25,7 +25,7 @@
                     <?php
                         if($_SESSION['prev'] == "ADMIN"){
                         echo '<a href="viewproducts.php">
-                                <button type="button" class="btn btn-lg btn-primary btn-cntr">View Products</button>
+                                <button type="button" class="btn btn-lg btn-primary btn-cntr">View Patients</button>
                             </a>';
                         }else{
                             echo '<a href="submitinventory.php">
