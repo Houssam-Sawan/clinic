@@ -13,10 +13,12 @@
 <body>
 <?php
  include 'nav.php';
+
 if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gender']) 
     && !empty($_POST['marital_status']) 
         && !empty($_POST['blood_group']) )
 {
+    
     $firstName = trim($_POST['first_name']);
     $lastName = trim(@$_POST['last_name']);
     $age = trim($_POST['age']);
@@ -29,6 +31,8 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
     $sql = "SELECT * FROM patients WHERE first_name = '$firstName'";
 
     $result = mysqli_query($dbc, $sql);
+    $isDeleted=false;
+    $updateID;
     if($result){
         while( $row = mysqli_fetch_array($result)){
             $foundMatch = $row['first_name'] == $firstName 
@@ -38,10 +42,16 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
             && strtolower($row['marital_status']) == strtolower($maritalStatus)
             && strtolower($row['blood_group']) == strtolower($bloodGroup)
             && strtolower($row['address']) == strtolower($address)
-            && $row['phone_number'] == $phone;
+            && $row['phone_number'] == $phone
+            && $row['deleted_at'] == NULL
+            ;
         
-            if($foundMatch)
+            if($foundMatch){
             error('This Patient already exists.\\n');
+            }elseif($row['deleted_at'] != NULL){
+                $isDeleted = true;
+                $updateID = $row['patientID'];
+            }
         }
 
     }else {
@@ -52,16 +62,33 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
 
     }
 
-    $query = "INSERT INTO patients(patientID, first_name, last_name, age, gender, marital_status, blood_group, address, phone_number )
-    VALUES(Null, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt;
+    $currentTime = 'now()';
 
-    $stmt = mysqli_prepare($dbc, $query);
+    if($isDeleted){
 
-    mysqli_stmt_bind_param($stmt, "ssisssss", $firstName, $lastName, $age, 
-                                                $gender, $maritalStatus, $bloodGroup, $address, $phone);
-    mysqli_stmt_execute($stmt);
+        $query = "UPDATE patients SET deleted_at = NULL , updated_at = $currentTime  WHERE patientID = $updateID";
+    
+        $stmt = mysqli_prepare($dbc, $query);
+    
+        mysqli_stmt_execute($stmt);
 
-    $affected_rows = mysqli_stmt_affected_rows($stmt);
+    }else{
+
+        $query = "INSERT INTO patients(patientID, first_name, last_name, age, gender
+        , marital_status, blood_group, address, phone_number, created_at )
+        VALUES(Null, ?, ?, ?, ?, ?, ?, ?, ?, $currentTime)";
+    
+        $stmt = mysqli_prepare($dbc, $query);
+    
+        mysqli_stmt_bind_param($stmt, "ssisssss", $firstName, $lastName, $age, 
+                                                    $gender, $maritalStatus, $bloodGroup,
+                                                     $address, $phone);
+        mysqli_stmt_execute($stmt);
+    
+    }
+
+    $affected_rows = mysqli_stmt_affected_rows($stmt);   
 
     if($affected_rows == 1){
         mysqli_stmt_close($stmt);
