@@ -13,81 +13,70 @@
 <body>
 <?php
  include 'nav.php';
-if(!empty($_POST['username']) && !empty($_POST['password']))
+if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gender']) 
+    && !empty($_POST['marital_status']) 
+        && !empty($_POST['blood_group']) )
 {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-    $fullName = trim(@$_POST['fullname']);
-    $userType = trim($_POST['type']);
-    $groubid = trim($_POST['groubid']);
-    $city = trim($_POST['city']);
+    $firstName = trim($_POST['first_name']);
+    $lastName = trim(@$_POST['last_name']);
+    $age = trim($_POST['age']);
+    $gender = trim($_POST['gender']);
+    $maritalStatus = trim($_POST['marital_status']);
+    $bloodGroup = trim($_POST['blood_group']);
+    $address = trim(@$_POST['address']);
     $phone = trim(@$_POST['phone']);
-    $email = trim(@$_POST['email']);
 
-    $postid = $_POST['username'];
-    $sql = "SELECT * FROM user WHERE userid = '$postid'";
+    $sql = "SELECT * FROM patients WHERE first_name = '$firstName'";
 
-    $result = @mysqli_query($dbc, $sql);
+    $result = mysqli_query($dbc, $sql);
     if($result){
         while( $row = mysqli_fetch_array($result)){
-            if($row['userid'] == $username)
-            error('A user already exists with your chosen userid.\\n'.
-                'Please try another.');
+            $foundMatch = $row['first_name'] == $firstName 
+            && $row['last_name'] == $lastName
+            && $row['age'] == $age
+            && strtolower($row['gender']) == strtolower($gender)
+            && strtolower($row['marital_status']) == strtolower($maritalStatus)
+            && strtolower($row['blood_group']) == strtolower($bloodGroup)
+            && strtolower($row['address']) == strtolower($address)
+            && $row['phone_number'] == $phone;
+        
+            if($foundMatch)
+            error('This Patient already exists.\\n');
         }
 
     }else {
+
         error('A database error occurred in processing your '.
         'submission.\\nIf this error persists, please '.
-        'contact regester@pharmacy.com.');
+        'contact support.');
+
     }
 
-    $newpass = $password;
-    $postname = $username;
-    $newfullname = $fullName;
-    $newtype = strtoupper($userType);
-    if( strcmp($newtype , "ADMIN") != 0 && strcmp($newtype , "DOCTOR") != 0 )
-                           // || strcmp($newtype , "USER") != 0  )
-                            {
-                                $newtype = "USER";
-                            }
-    $newgroubid = $groubid;
-    $newcity = $city;
-    $newphone = $phone;
-    $postemail = $email;
-    $postnotes = '';
-
-    $query = "INSERT INTO user(ID, userid, password, previligs, fullname, groubid, city, phone, email, notes)
-    VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO patients(patientID, first_name, last_name, age, gender, marital_status, blood_group, address, phone_number )
+    VALUES(Null, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($dbc, $query);
 
-    mysqli_stmt_bind_param($stmt, "sssssssss", $postid, $newpass,$newtype, $newfullname,
-                                $newgroubid, $newcity, $newphone ,$postemail, $postnotes);
+    mysqli_stmt_bind_param($stmt, "ssisssss", $firstName, $lastName, $age, 
+                                                $gender, $maritalStatus, $bloodGroup, $address, $phone);
     mysqli_stmt_execute($stmt);
 
     $affected_rows = mysqli_stmt_affected_rows($stmt);
 
     if($affected_rows == 1){
-        //echo '<h1>User added successfuly<h1>';
         mysqli_stmt_close($stmt);
         mysqli_close($dbc);
         echo '<div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
-                <h1 class="text-center login-title main-title">User added successfuly</h1>
-                <h1 class="text-center login-title">To add another user please click
-                <a href="adduser.php">here</a></h1>
+                <h1 class="text-center login-title main-title">Patient added successfuly</h1>
+                <h1 class="text-center login-title">To add another Patient please click
+                <a href="addpatient.php">here</a></h1>
         </div></div></div>';
-       // echo "<p>We are now redirecting you to login area.</p>";
-        //echo <meta http-equiv="refresh" content="2;url=http://example.com/" />
-        //echo "<meta http-equiv='refresh' content='=2;url=index.php' />";
-       /*echo '<script language="javascript" type="text/javascript">
-        location.href = "adduser.php";
-        </script>
-        ';*/
+       
     }else{
         echo "Error occurred </br>";
-        echo @mysqli_error();
+        echo mysqli_error($dbc);
         mysqli_stmt_close($stmt);
         mysqli_close($dbc);
     }
@@ -109,7 +98,7 @@ else
                         <input class="form-control2" placeholder="Gender *" value="" name="gender" id="gender" list="gender_list" required/>
                         <input class="form-control2" placeholder="Marital Status *" value="" name="marital_status" id="marital_status" list="marital_status_list" required/>
                         <input class="form-control2" placeholder="Blood Group *" value="" name="blood_group" id="blood_group" list="blood_group_list" required/>
-                        <input class="form-control2" placeholder="Address *" type="text" name="address" id="address" />
+                        <input class="form-control2" placeholder="Address" type="text" name="address" id="address" />
                         <input class="form-control2" placeholder="Phone Number" type="tel" name="phone" id="phone" />
 
                         <input class="btn btn-lg btn-primary btn-cntr" type="submit" name="add_patient" id="add_patient" value="Add Patient" />
