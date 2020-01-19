@@ -125,7 +125,8 @@ else
                         <input class="form-control2" placeholder="Gender *" value="" name="gender" id="gender" list="gender_list" pattern="Male|Female|Other" required/>
                         <input class="form-control2" placeholder="Marital Status *" value="" name="marital_status" id="marital_status" list="marital_status_list" pattern="Single|Married|Other" required/>
                         <input class="form-control2" placeholder="Blood Group *" value="" name="blood_group" id="blood_group" list="blood_group_list" 
-                        pattern="A+|A-|B+|B-|AB+|AB-|O+|O-|Other" required/>
+                         required/>
+                        <!--pattern="A+|A-|B+|B-|AB+|AB-|O+|O-|Other" -->
                         <input class="form-control2" placeholder="Address" type="text" name="address" id="address" />
                         <input class="form-control2" placeholder="Phone Number" type="tel" name="phone" id="phone" />
 
