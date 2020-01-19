@@ -121,10 +121,11 @@ else
                     <fieldset>
                         <input class="form-control2" placeholder="First Name *" type="text" name="first_name" id="first_name" required/>
                         <input class="form-control2" placeholder="Last Name" type="text" name="last_name" id="last_name" />
-                        <input class="form-control2" placeholder="age *" type="number" min="0" name="age" id="age" required/>
-                        <input class="form-control2" placeholder="Gender *" value="" name="gender" id="gender" list="gender_list" required/>
-                        <input class="form-control2" placeholder="Marital Status *" value="" name="marital_status" id="marital_status" list="marital_status_list" required/>
-                        <input class="form-control2" placeholder="Blood Group *" value="" name="blood_group" id="blood_group" list="blood_group_list" required/>
+                        <input class="form-control2" placeholder="age *" type="number" min="1" name="age" id="age" required/>
+                        <input class="form-control2" placeholder="Gender *" value="" name="gender" id="gender" list="gender_list" pattern="Male|Female|Other" required/>
+                        <input class="form-control2" placeholder="Marital Status *" value="" name="marital_status" id="marital_status" list="marital_status_list" pattern="Single|Married|Other" required/>
+                        <input class="form-control2" placeholder="Blood Group *" value="" name="blood_group" id="blood_group" list="blood_group_list" 
+                        pattern="A+|A-|B+|B-|AB+|AB-|O+|O-|Other" required/>
                         <input class="form-control2" placeholder="Address" type="text" name="address" id="address" />
                         <input class="form-control2" placeholder="Phone Number" type="tel" name="phone" id="phone" />
 

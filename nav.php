@@ -13,7 +13,7 @@
                         <a href="addpatient.php">Add Patient</a>
                     </li>
                     <li>
-                        <a href="viewpatients.php">View Patient</a>
+                        <a href="viewpatients.php">View Patients</a>
                     </li>
                     <li>
                         <a href="adddrugitem.php">Add Medicine</a>
