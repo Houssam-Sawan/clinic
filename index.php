@@ -24,7 +24,7 @@
     -->
                     <?php
                         if($_SESSION['prev'] == "ADMIN"){
-                        echo '<a href="viewproducts.php">
+                        echo '<a href="viewpatients.php">
                                 <button type="button" class="btn btn-lg btn-primary btn-cntr">View Patients</button>
                             </a>';
                         }else{

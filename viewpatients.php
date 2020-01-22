@@ -65,14 +65,21 @@
 
 
 <?php
-    $sql = "SELECT * FROM patients WHERE deleted_at IS NULL ";
+    $db = new MyDB();
+    if(!$db){
+        echo $db->lastErrorMsg();
+    }
 
-    $result = mysqli_query($dbc, $sql);
+    $query =<<<EOF
+     SELECT * FROM patients WHERE deleted_at IS NULL ;
+EOF;
+
+    $result = $db->query($query);
 
     $toShow = array();
     
     if($result){
-        while( $row = mysqli_fetch_array($result)){
+        while( $row = $result->fetchArray(SQLITE3_ASSOC)){
 
             $patientID = $row['patientID'];
             $firstName = $row['first_name'];
@@ -102,6 +109,9 @@
         'contact support.');
 
     }
+
+    $db->close();
+    unset($db);
 
     function makeTable($array){
         $table = "";
