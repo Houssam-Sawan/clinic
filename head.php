@@ -1,6 +1,6 @@
 <?php
   include 'common.php';
-  include 'base.php';
+  include_once 'base.php';
 ?>
 <!doctype html>
 <html lang="en">

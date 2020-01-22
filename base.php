@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+class MyDB extends SQLite3 {
+    function __construct() {
+       $this->open('database/clinic.db');
+    }
+ }
+ 
+
+ 
+/*
 $dbhost = "localhost"; // this will ususally be 'localhost', but can sometimes differ
 $dbname = "clinic"; // the name of the database that you are going to use for this project
 $dbuser = "root"; // the username that you created, or were given, to access your database
@@ -8,6 +17,6 @@ $dbpass = "clinicadmin"; // the password that you created, or were given, to acc
 
 $dbc = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)
 OR die('Could not connect to database' .
-mysqli_connect_error());
+mysqli_connect_error());*/
 
 ?>

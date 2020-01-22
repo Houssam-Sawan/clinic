@@ -44,15 +44,23 @@
     }
     elseif(!empty($_POST['username']) && !empty($_POST['password']))
     {
+        //get the user input
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
 
-        //require_once('db.php');
-        $sql = "SELECT * FROM user WHERE
-        userid = '$username' AND password = '$password'";
-        $result = @mysqli_query($dbc, $sql);
+        //Prepare the query line
+        $sql =<<<EOF
+         SELECT * FROM user WHERE userid = '$username' AND password = '$password';
+EOF;
+
+        $db = new MyDB();
+        if(!$db) {
+        echo $db->lastErrorMsg();
+        } 
+        //Excute the query 
+        $result = $db->query($sql);
         if($result){
-            $row = mysqli_fetch_array($result);
+            $row =  $result->fetchArray(SQLITE3_ASSOC) ;
             if($row != 0){
                 $email = $row['email'];
                 $fullname = $row['fullname'];
@@ -66,7 +74,8 @@
                 $_SESSION['IDnum'] = $idnum;
                 $_SESSION['prev'] = $prev;
 
-                mysqli_close($dbc);
+                $db->close();
+                unset($db);
 
                 echo '<div class="container">
                 <div class="row">
@@ -85,7 +94,9 @@
             else
             {
                 error("Sorry, the Username or Password is not correct");
-                mysqli_close($dbc);
+                $db->close();
+                $unset($db);
+
             }
 
         }else {

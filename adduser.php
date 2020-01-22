@@ -25,11 +25,18 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
     $email = trim(@$_POST['email']);
 
     $postid = $_POST['username'];
-    $sql = "SELECT * FROM user WHERE userid = '$postid'";
+    $sql =<<<EOF
+        SELECT * FROM user WHERE userid = '$postid';
+EOF;
 
-    $result = @mysqli_query($dbc, $sql);
+    $db = new MyDB();
+    if(!$db) {
+    echo $db->lastErrorMsg();
+    } 
+
+    $result = $db->query($sql);
     if($result){
-        while( $row = mysqli_fetch_array($result)){
+        while( $row = $result->fetchArray(SQLITE3_ASSOC)){
             if($row['userid'] == $username)
             error('A user already exists with your chosen userid.\\n'.
                 'Please try another.');
@@ -40,6 +47,10 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
         'submission.\\nIf this error persists, please '.
         'contact regester@pharmacy.com.');
     }
+    $db->close();
+    unset($db);
+
+    
 
     $newpass = $password;
     $postname = $username;
@@ -56,21 +67,19 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
     $postemail = $email;
     $postnotes = '';
 
-    $query = "INSERT INTO user(ID, userid, password, previligs, fullname, groubid, city, phone, email, notes)
-    VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query =<<<EOF
+    INSERT INTO user(userid, password, previligs, fullname, groubid, city, phone, email, notes)
+    VALUES('$postid', '$newpass','$newtype', '$newfullname','$newgroubid', '$newcity', '$newphone' ,'$postemail', '$postnotes');
+EOF;
 
-    $stmt = mysqli_prepare($dbc, $query);
-
-    mysqli_stmt_bind_param($stmt, "sssssssss", $postid, $newpass,$newtype, $newfullname,
-                                $newgroubid, $newcity, $newphone ,$postemail, $postnotes);
-    mysqli_stmt_execute($stmt);
-
-    $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-    if($affected_rows == 1){
-        //echo '<h1>User added successfuly<h1>';
-        mysqli_stmt_close($stmt);
-        mysqli_close($dbc);
+    $db = new MyDB();
+        if(!$db) {
+        echo $db->lastErrorMsg();
+        } 
+    $result = $db->exec($query);
+    if(!$result) {
+    echo $db->lastErrorMsg();
+    } else {
         echo '<div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
@@ -78,19 +87,10 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
                 <h1 class="text-center login-title">To add another user please click
                 <a href="adduser.php">here</a></h1>
         </div></div></div>';
-       // echo "<p>We are now redirecting you to login area.</p>";
-        //echo <meta http-equiv="refresh" content="2;url=http://example.com/" />
-        //echo "<meta http-equiv='refresh' content='=2;url=index.php' />";
-       /*echo '<script language="javascript" type="text/javascript">
-        location.href = "adduser.php";
-        </script>
-        ';*/
-    }else{
-        echo "Error occurred </br>";
-        echo @mysqli_error();
-        mysqli_stmt_close($stmt);
-        mysqli_close($dbc);
     }
+    $db->close();
+    unset($db);
+
 }
 else
 {
