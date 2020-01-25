@@ -1,5 +1,7 @@
 <?php // common.php
 
+date_default_timezone_set("Asia/Baghdad");
+
 function makeTable($array){
     $table = "";
     foreach($array as $key => $row){

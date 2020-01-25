@@ -88,5 +88,12 @@ EOF;
     </table>
 </div>
 
+<?php
+/*
+$d = new DateTime();
+$stamp = $d->getTimestamp();
+*/
+?>
+
     </body>
     </html>

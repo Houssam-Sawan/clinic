@@ -90,8 +90,9 @@ EOF;
             $bloodGroup = ucfirst($row['blood_group']) ;
             $address = ucfirst($row['address']);
             $phone = $row['phone_number'] ;
-            $createdAt = $row['created_at'] ;
-
+            $createdAtStamp = $row['created_at'] ;
+            $createdAt = @date("Y-m-d H:i:s", $createdAtStamp);
+            
             $currentRow = array($firstName, $lastName, $age, $gender, 
                                 $maritalStatus, $bloodGroup, $address, $phone, $createdAt);
 

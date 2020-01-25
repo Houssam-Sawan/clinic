@@ -28,13 +28,21 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
     $address = trim(@$_POST['address']);
     $phone = trim(@$_POST['phone']);
 
-    $sql = "SELECT * FROM patients WHERE first_name = '$firstName'";
+    $sql =<<<EOF
+    SELECT * FROM patients WHERE first_name = '$firstName';
+EOF;
 
-    $result = mysqli_query($dbc, $sql);
+    $db = new MyDB();
+    if(!$db) {
+    echo $db->lastErrorMsg();
+    } 
+
+    $result = $db->query($sql);
+    
     $isDeleted=false;
     $updateID;
     if($result){
-        while( $row = mysqli_fetch_array($result)){
+        while( $row = $result->fetchArray(SQLITE3_ASSOC)){
             $foundMatch = $row['first_name'] == $firstName 
             && $row['last_name'] == $lastName
             && $row['age'] == $age
@@ -62,37 +70,45 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
 
     }
 
-    $stmt;
-    $currentTime = 'now()';
+    $db->close();
+    unset($db);
 
+    $d = new DateTime();
+    $stamp = $d->getTimestamp();
+    $currentTime = $stamp;
+    $result;
+
+    $db = new MyDB();
+    if(!$db) {
+    echo $db->lastErrorMsg();
+    } 
+
+    
     if($isDeleted){
 
-        $query = "UPDATE patients SET deleted_at = NULL , updated_at = $currentTime  WHERE patientID = $updateID";
+        $sql =<<<EOF
+            UPDATE patients SET deleted_at = NULL , updated_at = $currentTime  WHERE patientID = $updateID;
+EOF;
     
-        $stmt = mysqli_prepare($dbc, $query);
-    
-        mysqli_stmt_execute($stmt);
+    $result = $db->exec($sql);
 
     }else{
 
-        $query = "INSERT INTO patients(patientID, first_name, last_name, age, gender
+        $sql =<<<EOF
+        INSERT INTO patients(first_name, last_name, age, gender
         , marital_status, blood_group, address, phone_number, created_at )
-        VALUES(Null, ?, ?, ?, ?, ?, ?, ?, ?, $currentTime)";
+        VALUES( '$firstName', '$lastName', $age, '$gender', '$maritalStatus', '$bloodGroup',
+                                                     '$address', '$phone', $currentTime);
+EOF;
     
-        $stmt = mysqli_prepare($dbc, $query);
-    
-        mysqli_stmt_bind_param($stmt, "ssisssss", $firstName, $lastName, $age, 
-                                                    $gender, $maritalStatus, $bloodGroup,
-                                                     $address, $phone);
-        mysqli_stmt_execute($stmt);
+    $result = $db->exec($sql);
     
     }
 
-    $affected_rows = mysqli_stmt_affected_rows($stmt);   
+    $affected_rows = $db->changes();   
 
     if($affected_rows == 1){
-        mysqli_stmt_close($stmt);
-        mysqli_close($dbc);
+        
         echo '<div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
@@ -103,10 +119,10 @@ if(!empty($_POST['first_name']) && !empty($_POST['age']) && !empty($_POST['gende
        
     }else{
         echo "Error occurred </br>";
-        echo mysqli_error($dbc);
-        mysqli_stmt_close($stmt);
-        mysqli_close($dbc);
+        echo $db->lastErrorMsg();
     }
+    $db->close();
+    unset($db);
 }
 else
 {
