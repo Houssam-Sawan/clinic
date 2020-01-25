@@ -113,20 +113,6 @@ EOF;
     $db->close();
     unset($db);
 
-    function makeTable($array){
-        $table = "";
-        foreach($array as $row){
-            $currentTableRow = "<tr>";
-            foreach($row as $cell){
-                $currentTableRow = $currentTableRow . "<td>" . $cell . "</td>";
-            }
-            $currentTableRow = $currentTableRow . "</tr>";
-
-            $table = $table."".$currentTableRow;
-        }
-        return $table;
-    }
-
 
     ?>
 
