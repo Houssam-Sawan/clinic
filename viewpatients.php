@@ -26,8 +26,100 @@
             a.click();
         });
     });
+    
 
-    //to do Add filter functions
+    function filter(fName, culNum) {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById(fName);
+        //filter = input.value;
+        filter =  input.value.toUpperCase();
+        table = document.getElementById("tab");
+        tr = table.getElementsByTagName("tr");
+        if(filter != "ALL"){
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[culNum];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                       tr[i].style.display = "filtered";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }else{
+            for (i = 0; i < tr.length; i++) {
+                        tr[i].style.display = "";
+            }
+        }
+
+    }
+
+    function filterAll(){
+        clearFilter();
+        var firstNameVal, lastNameVal, ageVal, genderVal, statusVal, bloodVal, addressVal, phoneVal, dateVal;
+        firstNameVal = document.getElementById("first_name").value ;
+        lastNameVal = document.getElementById("last_name").value ;
+        ageVal = document.getElementById("age").value;
+        genderVal = document.getElementById("gender").value;
+        statusVal = document.getElementById("status").value ;
+        bloodVal = document.getElementById("blood").value ;
+        addressVal = document.getElementById("address").value ;
+        phoneVal = document.getElementById("phone").value ;
+        dateVal = document.getElementById("date").value ;
+        if(firstNameVal != null && firstNameVal != ""){
+            filter("first_name",0);
+        }
+        if(lastNameVal != null && lastNameVal != ""){
+            filter("last_name",1);
+        }
+        if(ageVal != null && ageVal != ""){
+            filter("age",2);
+        }
+        if(genderVal != null && genderVal != ""){
+            filter("gender",3);
+        }
+        if(statusVal != null && statusVal != ""){
+            filter("status",4);
+        }
+        if(bloodVal != null && bloodVal != ""){
+            filter("blood",5);
+        }
+        if(addressVal != null && addressVal != ""){
+            filter("address",6);
+        }
+        if(phoneVal != null && phoneVal != ""){
+            filter("phone",7);
+        }
+        if(dateVal != null && dateVal != ""){
+            filter("date",8);
+        }
+    }
+
+    function clearFilter(){
+        // Declare variables
+        var table, tr, i;
+        table = document.getElementById("tab");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+                        tr[i].style.display = "";
+            }
+    }
+
+    function cleanFilter(){
+        clearFilter();
+        document.getElementById("first_name").value = "" ;
+        document.getElementById("last_name").value = "" ;
+        document.getElementById("age").value = "" ;
+        document.getElementById("gender").value = "" ;
+        document.getElementById("status").value = "" ;
+        document.getElementById("blood").value = "" ;
+        document.getElementById("address").value = "" ;
+        document.getElementById("phone").value = "" ;
+        document.getElementById("date").value = "" ;
+    }
+    
 </script>
 
 <body>
