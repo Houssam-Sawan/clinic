@@ -103,7 +103,7 @@ else
                 <div class="account-wall">
                     <form class="form-add-user" method="post" action="adduser.php" name="registerform" id="registerform">
                     <fieldset>
-                        <input class="form-control2" placeholder="Uername *" type="text" name="username" id="username" required/>
+                        <input class="form-control2" placeholder="Uername *" type="text" name="username" id="username" autofocus required/>
                         <input class="form-control2" placeholder="Password *" type="password" name="password" id="password" required/>
                         <input class="form-control2" placeholder="Full Name" type="text" name="fullname" id="fullname"/>
                         <input class="form-control2" placeholder="User Type *" value="" name="type" id="type" list="types" required/>

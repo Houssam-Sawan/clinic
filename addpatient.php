@@ -135,7 +135,7 @@ else
                 <div class="account-wall">
                     <form class="form-add-patient" method="post" action="addpatient.php" name="patientregisterform" id="patientregisterform">
                     <fieldset>
-                        <input class="form-control2" placeholder="First Name *" type="text" name="first_name" id="first_name" required/>
+                        <input class="form-control2" placeholder="First Name *" type="text" name="first_name" id="first_name" autofocus required/>
                         <input class="form-control2" placeholder="Last Name" type="text" name="last_name" id="last_name" />
                         <input class="form-control2" placeholder="age *" type="number" min="1" name="age" id="age" required/>
                         <input class="form-control2" placeholder="Gender *" value="" name="gender" id="gender" list="gender_list" pattern="Male|Female|Other" required/>

@@ -6,6 +6,15 @@ body{
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
 }
+
+.navbar
+{
+    background-color: #6ecfecc9;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #aef5d7c9;
+}
 .form-signin
 {
     max-width: 330px;
@@ -32,6 +41,11 @@ body{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+.form-control2 , .form-control:focus
+{
+    background-color: #aef5d7c9;
+
 }
 .form-add-item .form-control2
 {
@@ -84,7 +98,7 @@ body{
 {
     margin-top: 20px;
     padding: 20px 10px 10px 10px;
-    background-color: #f7f7f7;
+    background-color: #6ecfecad;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
