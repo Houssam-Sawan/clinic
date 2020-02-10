@@ -1,4 +1,4 @@
-<?php 
+<?php
     $title = 'View Patients';
     include 'head.php';
 
@@ -26,7 +26,7 @@
             a.click();
         });
     });
-    
+
 
     function filter(fName, culNum) {
         // Declare variables
@@ -119,7 +119,7 @@
         document.getElementById("phone").value = "" ;
         document.getElementById("date").value = "" ;
     }
-    
+
 </script>
 
 <body>
@@ -169,7 +169,7 @@ EOF;
     $result = $db->query($query);
 
     $toShow = array();
-    
+
     if($result){
         while( $row = $result->fetchArray(SQLITE3_ASSOC)){
 
@@ -184,8 +184,8 @@ EOF;
             $phone = $row['phone_number'] ;
             $createdAtStamp = $row['created_at'] ;
             $createdAt = @date("Y-m-d H:i:s", $createdAtStamp);
-            
-            $currentRow = array($firstName, $lastName, $age, $gender, 
+
+            $currentRow = array($firstName, $lastName, $age, $gender,
                                 $maritalStatus, $bloodGroup, $address, $phone, $createdAt);
 
                                 if(! array_key_exists($patientID, $toShow)){
@@ -225,8 +225,8 @@ EOF;
       <?php
 
       $out = "";
-      foreach($toShow  as $sub ){
-         $out = $out . makeTable($sub);
+      foreach($toShow  as $key => $sub ){
+         $out = $out . makeTable($key, $sub);
       }
         echo $out;
 
