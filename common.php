@@ -2,14 +2,14 @@
 
 date_default_timezone_set("Asia/Baghdad");
 
-function makeTable($array){
+function makeTable($index, $array){
     $table = "";
     foreach($array as $key => $row){
-        $currentTableRow = "<tr>";
+        $currentTableRow = "<tr id='$index'>";
         foreach($row as $cell){
             $currentTableRow = $currentTableRow . "<td>" . $cell . "</td>";
         }
-        $currentTableRow = $currentTableRow . "</tr>";
+        $currentTableRow = $currentTableRow . "<td><a class='btn btn-info' href='patientdetails.php?id=$index' role='button'>Edit</a></td></tr>";
 
         $table = $table."".$currentTableRow;
     }
