@@ -9,7 +9,7 @@ function makeTable($index, $array){
         foreach($row as $cell){
             $currentTableRow = $currentTableRow . "<td>" . $cell . "</td>";
         }
-        $currentTableRow = $currentTableRow . "<td><a class='btn btn-info' href='patientdetails.php?id=$index' role='button'>Edit</a></td></tr>";
+        $currentTableRow = $currentTableRow . "<td><a class='btn btn-info' href='patientdetails.php?id=$index' role='button'>View</a></td></tr>";
 
         $table = $table."".$currentTableRow;
     }

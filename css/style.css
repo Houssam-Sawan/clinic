@@ -146,5 +146,10 @@ font-size: 1.5em;
     min-width: 150px;
 }
 
+.sidenav h4
+{
+    padding-left: 10px;
+}
+
 
 

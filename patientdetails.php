@@ -16,7 +16,7 @@
   include 'nav.php';
 
   $patientID = $_GET['id'];
-  echo $patientID;
+  //echo $patientID;
 
   $db = new MyDB();
   if(!$db){
@@ -62,13 +62,37 @@ EOF;
   unset($db);
 
   ?>
-  <div class="container_fluid">
-    <?php
-    echo $patientID;
-    echo $firstName;
-    echo $lastName;
-    echo $age;
-     ?>
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-3 sidenav  account-wall">
+            <h4><?=$firstName?></h4>
+            <hr>
+            <h4><?=$lastName?></h4>
+            <hr>
+            <h4><?=$age?></h4>
+            <hr>
+            <h4><?=$gender?></h4>
+            <hr>
+            <h4><?=$maritalStatus?></h4>
+            <hr>
+            <h4><?=$bloodGroup?></h4>
+            <?php
+                if($address)
+                {
+                    echo '<hr><h4>'.$address.'</h4>';
+                }
+                if($phone)
+                {
+                    echo '<hr><h4>'.$phone.'</h4>';
+                }
+            ?>
+            
+        </div>
+        <div class="col-sm-9  account-wall">
+            prescriptions
+            <br><br><br><br><br><br><br><br>
+        </div>
+    </div>
   </div>
 </body>
 </html>
