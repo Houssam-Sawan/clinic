@@ -19,9 +19,6 @@
                         <a href="adddrugitem.php">Add Medicine</a>
                     </li>
                     <li>
-                        <a href="addprescription.php">Add Prescription</a>
-                    </li>
-                    <li>
                         <a href="users.php">Users</a>
                     </li>
                     <li>
