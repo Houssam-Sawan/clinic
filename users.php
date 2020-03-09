@@ -78,8 +78,8 @@ EOF;
       
 
       $out = "";
-      foreach($toShow  as $sub ){
-         $out = $out . makeTable($sub);
+      foreach($toShow  as $key => $sub){
+         $out = $out . makeTable($key, $sub);
       }
         echo $out;
 
